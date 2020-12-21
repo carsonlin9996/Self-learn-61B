@@ -27,7 +27,7 @@ public class LeapYear {
         if (args.length < 1) {
             System.out.println("Please enter command line arguments.");
             System.out.println("e.g. java Year 2000");
-            System.out.println("It works! commit");
+          //  System.out.println("It works! commit");
         }
         for (int i = 0; i < args.length; i++) {
             try {
