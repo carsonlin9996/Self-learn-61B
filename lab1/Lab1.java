@@ -1,7 +1,7 @@
 public class Lab1{
 	public static void main(String[] args){
 		System.out.println("Hello world");
-
+		System.out.println("Testing for commit");
 		int x = 0;
 		int sum =0;
 		while(x < 10){
