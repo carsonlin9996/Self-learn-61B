@@ -5,7 +5,7 @@ public class Planet{
 	public double yyVel; //Its current velocity in the y direction
 	public double mass;
 	public String imgFileName;
-	public static final double constantG = 6.67e-11;
+	private static final double constantG = 6.67e-11;
 
 	/*constructor
 	Initialize an instance of the Planet class */
@@ -103,7 +103,7 @@ public class Planet{
 		return netForceY;
 	}
 
-	public boolean equal(Planet p){
+	private boolean equal(Planet p){
 		if((this.xxPos == p.xxPos) && (this.yyPos == p.yyPos) && (this.mass == p.mass))
 			{return true;}
 
