@@ -42,7 +42,7 @@ public class NBody{
 
 	public static void main(String[] args){
 
-		String backgroundimg = "images/starfield.jpg"; 
+		String backgroundimg = "/images/starfield.jpg"; 
 
 		double T = Double.parseDouble(args[0]);
 		double dt = Double.parseDouble(args[1]);
@@ -102,6 +102,16 @@ public class NBody{
 		}
 
 
+		StdOut.printf("%d\n", planets.length);
+		StdOut.printf("%.2e\n", radius);
+		for (int i = 0; i < planets.length; i++) {
+   			StdOut.printf("%11.4e %11.4e %11.4e %11.4e %11.4e %12s\n",
+                  planets[i].xxPos, planets[i].yyPos, planets[i].xxVel,
+                  planets[i].yyVel, planets[i].mass, planets[i].imgFileName);   
+}
+
 	}
+
+
 
 }
