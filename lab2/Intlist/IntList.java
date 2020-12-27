@@ -48,6 +48,7 @@ public class IntList {
      * Returns a list equal to L with all elements squared. Non-destructive.
      */
     public static IntList squareListIterative(IntList L) {
+
         if (L == null) {
             return null;
         }
@@ -79,19 +80,62 @@ public class IntList {
      * Returns a list consisting of the elements of A followed by the
      * *  elements of B.  May modify items of A. Don't use 'new'.
      */
-
+    /*Recursive style*/
     public static IntList dcatenate(IntList A, IntList B) {
-        //TODO:  fill in method
-        return null;
+
+        while(A == null){
+              A = B;
+              return A;
+        }
+        A.rest = dcatenate(A.rest, B);
+        return A;
+
     }
+
+    /*Iterative style*/
+    public static IntList dcatenateIterative(IntList A, IntList B){
+        IntList p = A;
+
+        while(p.rest != null){
+            p = p.rest;
+            continue;
+        }
+        p.rest = B;
+
+        return A;
+    }
+
 
     /**
      * Returns a list consisting of the elements of A followed by the
      * * elements of B.  May NOT modify items of A.  Use 'new'.
      */
-    public static IntList catenate(IntList A, IntList B) {
+    public static IntList catenate(IntList A, IntList B){
+        while(A == null){
+            return B;
+        }
+        IntList newList = new IntList(A.first, catenate(A.rest, B));
+
+        return newList;
+
+
+    }
+/*Iteration style*/
+   public static IntList catenateIteration(IntList A, IntList B) {
+        IntList newList = new IntList(A.first, null);
+
+       IntList current = newList;
+        IntList p = A.rest;
+
+        while(p != null){
+           current.rest = new IntList(p.first,null);
+            p = p.rest;
+            current = current.rest;
+        }
+        current.rest = B;
+        return newList;
         //TODO:  fill in method
-        return null;
+        //return null;
     }
 
 
