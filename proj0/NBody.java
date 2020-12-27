@@ -32,7 +32,7 @@ public class NBody{
 			String img = readinfo.readString();
 
 			allPlanets[i] = new Planet(positionX, positionY, velocityX, velocityY, mass, img);
-			
+	
 			i++;
 
 		}
