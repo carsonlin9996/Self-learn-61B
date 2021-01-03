@@ -1,12 +1,12 @@
 public class LinkedListDeque<T> {
     private class IntNode {
         T item;
-        IntNode previous;
+        IntNode pre;
         IntNode next;
         //constructor for each IntNode
         IntNode(T t, IntNode p, IntNode n) {
             item = t;
-            previous = p;
+            pre = p;
             next = n;
         }
     }
@@ -17,7 +17,7 @@ public class LinkedListDeque<T> {
     public LinkedListDeque() {
         /*Creates an empty node where front and back points back to the sentinel */
         sentinel = new IntNode(null, null, null);
-        sentinel.previous = sentinel;
+        sentinel.pre = sentinel;
         sentinel.next = sentinel;
         size = 0;
 
@@ -33,14 +33,14 @@ public class LinkedListDeque<T> {
         //Original sentinel.next ref
         sentinel.next = new IntNode(item, sentinel, sentinel.next);
         size += 1;
-        sentinel.next.next.previous = sentinel.next;
+        sentinel.next.next.pre = sentinel.next;
 
     }
 
     public void addLast(T item) {
-        sentinel.previous = new IntNode(item, sentinel.previous, sentinel);
+        sentinel.pre = new IntNode(item, sentinel.pre, sentinel);
         size += 1;
-        sentinel.previous.previous.next = sentinel.previous;
+        sentinel.pre.pre.next = sentinel.pre;
     }
 
     public int size() {
@@ -66,7 +66,7 @@ public class LinkedListDeque<T> {
         //sentinel.next now points to the next.next node.
         sentinel.next = sentinel.next.next;
         //points back to the original sentinel
-        sentinel.next.previous = sentinel;
+        sentinel.next.pre = sentinel;
 
 
         size -= 1;
@@ -77,10 +77,10 @@ public class LinkedListDeque<T> {
         if (isEmpty()) {
             return null;
         }
-        T res = sentinel.previous.item; //returns the item getting removed
+        T res = sentinel.pre.item; //returns the item getting removed
 
-        sentinel.previous = sentinel.previous.previous;
-        sentinel.previous.next = sentinel;
+        sentinel.pre = sentinel.pre.pre;
+        sentinel.pre.next = sentinel;
 
         size -= 1;
         return res;
@@ -114,7 +114,7 @@ public class LinkedListDeque<T> {
         }
         return getRecursiveHelper(index - 1, p.next);
     }
-}//
+}
 
     //Used for LinkedListDeque testing, comment out for at submission
    /*public static void main(String[] args){
