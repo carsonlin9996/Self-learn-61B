@@ -5,7 +5,6 @@ public class LinkedListDeque<T> {
         T item;
         IntNode previous;
         IntNode next;
-
         //constructor for each IntNode
         IntNode(T t, IntNode p, IntNode n) {
             item = t;
@@ -26,7 +25,7 @@ public class LinkedListDeque<T> {
 
     }
     public boolean isEmpty() {
-        if(size == 0){
+        if (size == 0) {
             return true;
         }
         return false;
@@ -61,7 +60,7 @@ public class LinkedListDeque<T> {
     }
 
     public T removeFirst() {
-        if(isEmpty()){
+        if (isEmpty()) {
             return null;
         }
         T res = sentinel.next.item; //returns the item getting removed
@@ -74,7 +73,7 @@ public class LinkedListDeque<T> {
     }
 
     public T removeLast() {
-        if(isEmpty()){
+        if (isEmpty()) {
             return null;
         }
         T res = sentinel.previous.item; //returns the item getting removed
@@ -87,7 +86,7 @@ public class LinkedListDeque<T> {
     }
 
     public T get(int index) {
-        if(isEmpty()){
+        if (isEmpty()) {
             return null;
         }
 
@@ -100,35 +99,31 @@ public class LinkedListDeque<T> {
     }
 
     public T getRecursive(int index) {
-        return getRecursiveHelper(index-1, sentinel.next);
+
+        if (index >= size) {
+            return null;
+        }
+
+        return getRecursiveHelper(index, sentinel.next);
     }
 
     private T getRecursiveHelper(int index, IntNode p){
-        if(index == 0) {
+        if (index == 0) {
           return p.item;
         }
-      return getRecursiveHelper(index - 1, p.next);
+        return getRecursiveHelper(index - 1, p.next);
     }
 
 
     //Used for LinkedListDeque testing, comment out for at submission
-   /* public static void main(String[] args){
+   /*public static void main(String[] args){
         LinkedListDeque<Integer> test = new LinkedListDeque<>();
-        test.addFirst(88);
-        test.addFirst(5);
-        //test.addFirst(10);
-        //System.out.println(test.size());
-        test.addFirst(99);
-        test.addFirst(11);
-        test.addLast(7);
-        int x = test.removeLast();
-        //test.removeLast();
+        test.addLast(88);
 
-        test.printDeque();
-        System.out.println(" ");
-        //System.out.println("The ith item is " + test.get(1));
-        //System.out.print("The ith item is " + test.getRecursive(1));
-        System.out.println("The first item removed is " + x);
+
+        int k = test.getRecursive(0);
+
+        System.out.println(k);
 
     }*/
 } //class
