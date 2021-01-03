@@ -53,10 +53,10 @@ public class ArrayDeque<T> {
     }
 
     private void resize() {
-        if(size == item.length) {
+        if (size == item.length) {
             expand();
         }
-        if((size < item.length / 4) && item.length > 8) {
+        if ((size < item.length / 4) && item.length > 8) {
             shrink();
         }
     }
@@ -80,7 +80,7 @@ public class ArrayDeque<T> {
         nextFirst = 4;
         nextLast = 5;
 
-        while(first != last) {
+        while (first != last) {
             newArray[nextLast] = temp[first];
             nextLast = onePlus2(nextLast, newCapacity);
             first =  onePlus(first);
@@ -92,13 +92,13 @@ public class ArrayDeque<T> {
 
     public void printDeque() {
         int currentFirst = onePlus(nextFirst);
-        while(currentFirst != nextLast){
+        while (currentFirst != nextLast) {
             System.out.print(item[currentFirst] + " ");
             currentFirst = onePlus(currentFirst); //updates currentFirst index to the next one.
         }
     }
 
-    public T get (int index) {
+    public T get(int index) {
         if (isEmpty()) {
             return null;
         }
@@ -127,8 +127,8 @@ public class ArrayDeque<T> {
         return index + 1;
     }
 
-    private int onePlus2(int index, int newCapacity) { //use for new array
-        if (index == newCapacity - 1) {
+    private int onePlus2(int index, int x) { //use for new array
+        if (index == x - 1) {
             return 0;
         }
         return index + 1;

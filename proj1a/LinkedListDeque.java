@@ -1,6 +1,4 @@
 public class LinkedListDeque<T> {
-
-
     private class IntNode {
         T item;
         IntNode previous;
@@ -32,8 +30,8 @@ public class LinkedListDeque<T> {
     }
 
     public void addFirst(T item) {
-        //                                      Original sentinel.next ref
-        sentinel.next = new IntNode(item, sentinel, sentinel.next );
+        //Original sentinel.next ref
+        sentinel.next = new IntNode(item, sentinel, sentinel.next);
         size += 1;
         sentinel.next.next.previous = sentinel.next;
 
@@ -52,7 +50,7 @@ public class LinkedListDeque<T> {
     public void printDeque() {
         IntNode ptr = sentinel;
 
-        while(ptr.next != sentinel) {
+        while (ptr.next != sentinel) {
             ptr = ptr.next;
             System.out.print(ptr.item + " ");
 
@@ -65,8 +63,11 @@ public class LinkedListDeque<T> {
         }
         T res = sentinel.next.item; //returns the item getting removed
 
-        sentinel.next = sentinel.next.next; //sentinel.next now points to the next.next node.
-        sentinel.next.previous = sentinel; //points back to the original sentinel
+        //sentinel.next now points to the next.next node.
+        sentinel.next = sentinel.next.next;
+        //points back to the original sentinel
+        sentinel.next.previous = sentinel;
+
 
         size -= 1;
         return res;
@@ -107,13 +108,13 @@ public class LinkedListDeque<T> {
         return getRecursiveHelper(index, sentinel.next);
     }
 
-    private T getRecursiveHelper(int index, IntNode p){
+    private T getRecursiveHelper(int index, IntNode p) {
         if (index == 0) {
-          return p.item;
+            return p.item;
         }
         return getRecursiveHelper(index - 1, p.next);
     }
-
+}//
 
     //Used for LinkedListDeque testing, comment out for at submission
    /*public static void main(String[] args){
@@ -126,5 +127,5 @@ public class LinkedListDeque<T> {
         System.out.println(k);
 
     }*/
-} //class
+
 
