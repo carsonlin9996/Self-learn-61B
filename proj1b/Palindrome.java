@@ -44,7 +44,7 @@ public class Palindrome {
         return result;
     }
 
-    public boolean isPalindromeHelper(Deque<Character> dq, CharacterComparator cc){
+    private boolean isPalindromeHelper(Deque<Character> dq, CharacterComparator cc){
         if(dq.size() == 1 || dq.size() == 0 ) {
             return true;
         }
