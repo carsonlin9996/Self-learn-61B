@@ -12,6 +12,7 @@ public class ArrayDeque<T> {
         nextFirst = 4;
         nextLast = 5;
     }
+
     public void addFirst(T x) {
         resize();
         item[nextFirst] = x;
@@ -37,7 +38,6 @@ public class ArrayDeque<T> {
         size -= 1;
         resize();
         return removedItem;
-
     }
 
     public T removeLast() {
@@ -63,13 +63,11 @@ public class ArrayDeque<T> {
     private void expand() {
         newCapacity = 2 * newCapacity;
         resizeArray(item.length * 2);
-
     }
 
     private void shrink() {
         newCapacity = newCapacity / 2;
         resizeArray(item.length / 2);
-
     }
 
     private void resizeArray(int newSize) {
@@ -77,8 +75,11 @@ public class ArrayDeque<T> {
         T[] temp = item;
         int first = onePlus(nextFirst);
         int last = oneMinus(nextLast);
-        nextFirst = 4;
-        nextLast = 5;
+
+        //index for new arraydeque//
+
+        nextFirst = 10;
+        nextLast = 11; //Use for the newArray, updates the object index at the same time.
 
         while (first != last) {
             newArray[nextLast] = temp[first];
@@ -145,17 +146,17 @@ public class ArrayDeque<T> {
         return size;
     }
 
-    /*public static void main(String[] args){
+    public static void main(String[] args){
         ArrayDeque<Integer> test = new ArrayDeque<>();
         test.addFirst(1);
+        test.addFirst(2);
         test.addFirst(3);
         test.addFirst(4);
         test.addFirst(5);
-        test.addFirst(6);
-        test.addFirst(7);
-        test.addFirst(8);
-        test.addFirst(9);
-        test.addFirst(999);
+        test.addLast(999);
+        test.addLast(888);
+        test.addLast(777);
+        test.addLast(555);
 
 
         //int items_removed = test.removeLast();
@@ -163,5 +164,5 @@ public class ArrayDeque<T> {
         //System.out.println(test.size());
         //int get = test.get(4);
         //System.out.print(get);
-    }*/
+    }
 }
