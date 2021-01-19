@@ -30,6 +30,7 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T>{
     }
 
 
+
     /**
      * Adds x to the end of the ring buffer. If there is no room, then
      * throw new RuntimeException("Ring buffer overflow"). Exceptions
@@ -59,7 +60,7 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T>{
      * throw new RuntimeException("Ring buffer underflow"). Exceptions
      * covered Monday.
      */
-   // @Override
+    //@Override
     public T dequeue() {
         // TODO: Dequeue the first item. Don't forget to decrease fillCount and update
         if(isEmpty()){
@@ -86,6 +87,7 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T>{
     }
 
     private class QueIterator implements Iterator<T>{
+
         int current;
         int filled;
 
@@ -112,6 +114,7 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T>{
     }
 
     public Iterator<T> iterator(){
+
         return new QueIterator();
     }
 
