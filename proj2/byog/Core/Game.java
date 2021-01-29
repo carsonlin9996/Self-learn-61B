@@ -35,7 +35,7 @@ public class Game {
         int sizeOfInput = input.length();
 
         String seedToUse = input.substring(1,sizeOfInput - 1);
-        System.out.println(seedToUse);
+        //System.out.println(seedToUse);
 
         long seed = Long.parseLong(seedToUse);
         DrawRandomMap newMap = new DrawRandomMap(80,50,seed);
