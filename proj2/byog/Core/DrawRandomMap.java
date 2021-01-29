@@ -382,7 +382,7 @@ public class DrawRandomMap {
     private void makeRoomHelperTopRight(Position p, String type, String whereToDraw){
         //check if overlap with previous shape or out of world boundary
         if (checkOverlap(p) || checkBoundary(p)) {
-            System.out.println("Hit boundary");
+           // System.out.println("Hit boundary");
             return;
         }
         int x1 = p.upperRightX;
@@ -546,7 +546,7 @@ public class DrawRandomMap {
     }
 
 
-    public static void main(String[] args){
+   /* public static void main(String[] args){
         int worldWidth = 80;  //x coordinate
         int worldHeight = 50; //y coordinate
 
@@ -585,10 +585,10 @@ public class DrawRandomMap {
         //game.southHall(fixPoint2);
         //game.eastHall(fixPoint);
         //   ter.renderFrame(world);
-        System.out.println(TETile.toString(game.world));
-        ter.renderFrame(game.world);
-        System.out.println(game.currentMapSize);
-    }
+        //System.out.println(TETile.toString(game.world));
+        //ter.renderFrame(game.world);
+        //System.out.println(game.currentMapSize);
+   // }
 
 
 }
