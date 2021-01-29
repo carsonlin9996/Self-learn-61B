@@ -333,7 +333,7 @@ public class DrawRandomMap {
     private void makeRoomHelperBottomLeft(Position p, String type, String whereToDraw){
         //check if overlap with previous shape or out of world boundary
         if (checkOverlap(p) || checkBoundary(p)) {
-            System.out.println("Hit boundary");
+            //System.out.println("Hit boundary");
             return;
         }
         int x1 = p.bottomLeftX;
@@ -436,7 +436,7 @@ public class DrawRandomMap {
         for(; i < allPosition.size(); i++){
             //check if current map is large enough
             if (largeEnough()){
-                System.out.println("Reaches 80% of capacity!");
+                //System.out.println("Reaches 80% of capacity!");
                 break;
             }
             Position p = allPosition.get(i);
