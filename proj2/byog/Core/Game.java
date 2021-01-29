@@ -34,8 +34,8 @@ public class Game {
         // and return a 2D tile representation of the world that would have been
         // drawn if the same inputs had been given to playWithKeyboard().
         //int sizeOfInput = input.length();
-        ter = new TERenderer();
-        ter.initialize(80,50);
+        //ter = new TERenderer();
+        //ter.initialize(80,50);
         /*String seedToUse = input.substring(1,sizeOfInput - 1);
         //System.out.println(seedToUse);
 

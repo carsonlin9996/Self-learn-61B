@@ -9,8 +9,8 @@ import byog.TileEngine.TETile;
  */
 public class Main {
     public static void main(String[] args) {
-        //TERenderer ter = new TERenderer();
-        //ter.initialize(80,50);
+        TERenderer ter = new TERenderer();
+        ter.initialize(80,50);
         if (args.length > 1) {
             System.out.println("Can only have one argument - the input string");
             System.exit(0);
