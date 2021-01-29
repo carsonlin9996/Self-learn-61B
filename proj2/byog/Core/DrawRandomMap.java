@@ -449,7 +449,7 @@ public class DrawRandomMap {
     //draw next stuff connected to a Hall
     public void nextStuff (Position prePosition){
         //generate 1 to  3 halls/rooms
-        int numberOfItems = 4;
+        int numberOfItems = RANDOM.nextInt(4);
         //Select the 1st side to draw hall
         int sideToStart = RANDOM.nextInt(4);
         //RANDOM.nextInt(4);
