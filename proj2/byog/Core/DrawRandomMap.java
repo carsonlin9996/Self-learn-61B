@@ -25,7 +25,7 @@ public class DrawRandomMap {
     private final static String SOUTH = "S";
     private final static String ROOM = "R";
     private final static String HALL = "H";
-    private final static double percentage = 0.8;
+    private final static double percentage = 1;
     private static List<Position> allPosition = new ArrayList<>();
     private final static String UPPER = "U";
     private final static String LOWER = "L";
@@ -449,7 +449,7 @@ public class DrawRandomMap {
     //draw next stuff connected to a Hall
     public void nextStuff (Position prePosition){
         //generate 1 to  3 halls/rooms
-        int numberOfItems = RANDOM.nextInt(4);
+        int numberOfItems = 4;
         //Select the 1st side to draw hall
         int sideToStart = RANDOM.nextInt(4);
         //RANDOM.nextInt(4);

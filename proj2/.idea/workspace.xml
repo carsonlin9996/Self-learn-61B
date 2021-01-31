@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="292ba7c3-b95e-4f1d-9b90-ae9fa704eaf6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/byog/Core/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/byog/Core/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/byog/Core/DrawRandomMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/byog/Core/DrawRandomMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/byog/lab6/MemoryGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/byog/lab6/MemoryGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/proj2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/proj2/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/proj2/byog/Core/DrawRandomMap.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/proj2/byog/Core/DrawRandomMap.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/proj2/byog/lab6/MemoryGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/proj2/byog/lab6/MemoryGame.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,12 +26,12 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../library-sp18/javalib" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Proj2/CS61B_Proj2/proj2" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Main">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="WIDTH" value="400" />
       <option name="HEIGHT" value="300" />
@@ -37,7 +42,23 @@
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="byog.Core.Main" />
       <module name="proj2" />
-      <option name="PROGRAM_PARAMETERS" value="N5464S" />
+      <option name="PROGRAM_PARAMETERS" value="n1145991979148109142s" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MemoryGame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="byog.lab6.MemoryGame" />
+      <module name="proj2" />
+      <option name="PROGRAM_PARAMETERS" value="45665" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MemoryGameSolution" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="byog.lab6.MemoryGameSolution" />
+      <module name="proj2" />
+      <option name="PROGRAM_PARAMETERS" value="564" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -73,9 +94,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.MemoryGameSolution" />
+      <item itemvalue="Application.MemoryGame" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.MemoryGame" />
+        <item itemvalue="Application.MemoryGameSolution" />
       </list>
     </recent_temporary>
   </component>
