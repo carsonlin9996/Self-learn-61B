@@ -43,26 +43,24 @@ public class Percolation {
             map.union(xyTo1D(row, col), bottom);
         }
 
-        if(row > 0 && isOpen(row - 1, col)){
+        if(row != 0 && isOpen(row - 1, col)){
             map.union(xyTo1D(row, col), xyTo1D(row - 1, col ));
             map2.union(xyTo1D(row, col), xyTo1D(row - 1, col ));
 
         }
-        if(row < sideLength - 1 && isOpen(row + 1, col)){
+        if(row != sideLength - 1 && isOpen(row + 1, col)){
             map.union(xyTo1D(row, col), xyTo1D(row + 1, col));
             map2.union(xyTo1D(row, col), xyTo1D(row + 1, col));
         }
 
-        if(col > 0 && isOpen(row, col - 1)){
+        if(col != 0 && isOpen(row, col - 1)){
             map.union(xyTo1D(row,col), xyTo1D(row, col - 1));
             map2.union(xyTo1D(row,col), xyTo1D(row, col - 1));
         }
-        if(col < sideLength - 1 && isOpen(row, col + 1)){
+        if(col != sideLength - 1 && isOpen(row, col + 1)){
             map.union(xyTo1D(row,col), xyTo1D(row, col + 1));
             map2.union(xyTo1D(row,col), xyTo1D(row, col + 1));
         }
-
-
     }
 
     //is the site(row, col) open?
