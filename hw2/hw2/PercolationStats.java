@@ -21,9 +21,10 @@ public class PercolationStats {
         }
         trials = T;
 
-        Percolation grid = pf.make(N); //returns a Percolation data type
+
         fractions = new double[T];
         for(int i = 0; i < T; i++){
+            Percolation grid = pf.make(N); //returns a Percolation data type
             int openSites = 0;
             if(!grid.percolates()){
                 int row = StdRandom.uniform(N);
