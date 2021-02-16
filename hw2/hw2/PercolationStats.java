@@ -24,9 +24,11 @@ public class PercolationStats {
 
         fractions = new double[T];
         for(int i = 0; i < T; i++){
-            Percolation grid = pf.make(N); //returns a Percolation data type
             int openSites = 0;
-            if(!grid.percolates()){
+            Percolation grid = pf.make(N); //returns a Percolation data type
+
+            while(!grid.percolates()){
+
                 int row = StdRandom.uniform(N);
                 int col = StdRandom.uniform(N);
 
@@ -35,7 +37,7 @@ public class PercolationStats {
                     openSites += 1;
                 }
             }
-            fractions[i] = openSites/ (N * N);
+            fractions[i] = (double) openSites / (N * N);
         }
     }
     // sample mean of percolation threshold
