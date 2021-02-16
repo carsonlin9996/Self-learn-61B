@@ -39,13 +39,13 @@ public class PercolationStats {
     }
     // sample mean of percolation threshold
     public double mean(){
-        double fractionsTotal = 0.0;
+        /*double fractionsTotal = 0.0;
         for(double i : fractions){
             fractionsTotal += i;
         }
-        return fractionsTotal/trials;
+        return fractionsTotal/trials;*/
 
-        // return StdStats.mean(fractions);
+        return StdStats.mean(fractions);
     }
 
     // sample standard deviation of percolation threshold
