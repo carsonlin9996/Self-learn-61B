@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9feb5770-ecf6-4f61-bf95-ab35fe98b73a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/lab9/BSTMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab9/BSTMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab9/MyHashMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab9/MyHashMap.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +26,7 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
-  <component name="RunManager" selected="Application.BSTMap">
+  <component name="RunManager" selected="JUnit.TestBSTMap.sanityClearTest">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="WIDTH" value="400" />
       <option name="HEIGHT" value="300" />
@@ -98,8 +98,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.BSTMap" />
         <item itemvalue="JUnit.TestBSTMap.sanityClearTest" />
+        <item itemvalue="Application.BSTMap" />
       </list>
     </recent_temporary>
   </component>
@@ -125,5 +125,21 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/lab9/BSTMap.java</url>
+          <line>224</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/lab9/MyHashMap.java</url>
+          <line>122</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
