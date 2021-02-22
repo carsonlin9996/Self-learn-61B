@@ -12,7 +12,7 @@ import java.util.Set;
  */
 public class MyHashMap<K, V> implements Map61B<K, V> {
 
-    private static final int DEFAULT_SIZE = 4;
+    private static final int DEFAULT_SIZE = 16;
     private static final double MAX_LF = 0.75;
 
     private ArrayMap<K, V>[] buckets;
@@ -101,14 +101,12 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
      * UnsupportedOperationException. */
     @Override
     public V remove(K key) {
-        if(get(key) == null){
+        int hash = hash(key);
+        if(!buckets[hash].containsKey(key)){
             return null;
         }
-
-        int hash = hash(key);
         size -= 1;
         return buckets[hash].remove(key);
-
         //throw new UnsupportedOperationException();
     }
 
@@ -117,10 +115,11 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
      * throw an UnsupportedOperationException.*/
     @Override
     public V remove(K key, V value) {
-        if(get(key) != value){
-            throw new IllegalArgumentException("key/value mismatch");
-        }
+
         int hash = hash(key);
+        if(!buckets[hash].containsKey(key) || get(key) != value ){
+            return null;
+        }
         size -= 1;
         return buckets[hash].remove(key);
         //throw new UnsupportedOperationException();
@@ -156,7 +155,9 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
         map.put('C', 5);
         map.put('K', 7);
         map.put('Z', 4);
-        map.put('L', 4);
+        map.put('L', 99);
+        map.remove('L');
+        System.out.println(map.size());
         //map.keySet();
     }
 }
