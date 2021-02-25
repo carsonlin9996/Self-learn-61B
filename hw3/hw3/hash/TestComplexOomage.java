@@ -41,14 +41,13 @@ public class TestComplexOomage {
     @Test
     public void testWithDeadlyParams() {
 
-
         // Your code here.
         List<Oomage> deadlyList = new ArrayList<>();
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 1000; i++) {
             List<Integer> params = new ArrayList<>();
             for (int j = 0; j < 4; j++) {
-                int stuff = StdRandom.uniform(200, 255);
+                int stuff = StdRandom.uniform(255);
                 params.add(stuff);
             }
             for(int j = 0; j < 4; j++){ //adding fixed numbers will fail the distribution test.
