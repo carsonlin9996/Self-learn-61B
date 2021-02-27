@@ -215,10 +215,9 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
         swap(1, size);
         contents[size] = null;  // Nulling out the removed node
         size -= 1;
-        /*if (size > 0) {
+        if (size > 0) {
             sink(1);            // Sink the promoted node
-        }*/
-        sink(1);
+        }
 
         return removed;
     }
