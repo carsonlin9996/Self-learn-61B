@@ -145,7 +145,7 @@ public class Board implements WorldState{
         return true;
     }
 
-    @Override
+    //@Override
     /*public int hashCode() {
         return 1;
     }*/
