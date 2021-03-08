@@ -3,7 +3,6 @@ package hw4.puzzle;
 import edu.princeton.cs.algs4.MinPQ;
 import edu.princeton.cs.algs4.Stack;
 
-import java.util.PriorityQueue;
 
 public class Solver {
 
@@ -37,7 +36,6 @@ public class Solver {
            return this.priority - node.priority;
        }
     }
-
     /*
     Constructor which solves the puzzle, computing
     everything necessary for moves() and solution() to
