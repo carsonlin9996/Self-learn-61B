@@ -42,7 +42,7 @@ public class Solver {
     not have to solve the problem again. Solves the
     puzzle using the A* algorithm. Assumes a solution exists.
      */
-    Stack<WorldState> path;
+    private Stack<WorldState> path;
 
     public Solver(WorldState initial) {
         path = new Stack<>();

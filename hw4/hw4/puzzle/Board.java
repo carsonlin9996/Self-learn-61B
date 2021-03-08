@@ -4,7 +4,7 @@ import edu.princeton.cs.algs4.Queue;
 
 public class Board implements WorldState{
 
-    int size;
+    private int size;
     private int[][] grid;
     private final int BLANK = 0;
 
@@ -132,6 +132,9 @@ public class Board implements WorldState{
         }
 
         Board that = (Board) other;
+        if(this.size != that.size){
+            return false;
+        }
         for(int i = 0; i < size; i++) {
             for(int j = 0; j < size; j++) {
                 if(this.tileAt(i , j) != that.tileAt(i, j)) {
@@ -143,7 +146,7 @@ public class Board implements WorldState{
     }
 
     @Override
-    public int hashCode() {
+    /*public int hashCode() {
         return 1;
-    }
+    }*/
 }
