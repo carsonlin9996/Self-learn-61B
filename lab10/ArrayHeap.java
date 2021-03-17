@@ -134,9 +134,15 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
         if (parentIndex == 0) { // Have swam up to the root
             return;
         }
-        if (min(index, parentIndex) == index) {
+        while (min(index, parentIndex) == index) {
             swap(index, parentIndex);
-            swim(parentIndex);  // swims up more ?
+            index = parentIndex;
+            parentIndex = parentIndex(parentIndex);
+
+            if(parentIndex == 0){
+                break;
+            }
+            //swim(parentIndex);  // swims up more ?
         }
     }
 
