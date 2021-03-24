@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="03da7ce1-2345-4462-bd89-c5dd2a0bd075" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/MergeSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/MergeSort.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../library-sp18" beforeDir="false" afterPath="$PROJECT_DIR$/../library-sp18" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -27,7 +26,7 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.MergeSort">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="WIDTH" value="400" />
       <option name="HEIGHT" value="300" />
@@ -37,6 +36,14 @@
     </configuration>
     <configuration name="MergeSort" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MergeSort" />
+      <module name="lab12" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="QuickSort" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="QuickSort" />
       <module name="lab12" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <method v="2">
@@ -77,6 +84,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.MergeSort" />
+        <item itemvalue="Application.QuickSort" />
       </list>
     </recent_temporary>
   </component>
