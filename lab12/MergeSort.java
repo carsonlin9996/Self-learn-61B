@@ -92,7 +92,7 @@ public class MergeSort {
                 //Queue<Item> item = splitQueue.dequeue();
                 leftQueue.enqueue(newQueue.dequeue());
             }
-            for (int i = 0; i < sizeHalf; i++) {
+            for (int i = sizeHalf; i < items.size(); i++) {
                 //Queue<Item> item = splitQueue.dequeue();
                 rightQueue.enqueue(newQueue.dequeue());
             }
@@ -118,6 +118,7 @@ public class MergeSort {
         students.enqueue("Z");
         students.enqueue("Z");
         students.enqueue("K");
+        students.enqueue("J");
 
         System.out.println(students);
         System.out.println(MergeSort.mergeSort(students));
