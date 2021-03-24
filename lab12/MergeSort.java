@@ -61,7 +61,7 @@ public class MergeSort {
      */
     private static <Item extends Comparable> Queue<Item> mergeSortedQueues(
             Queue<Item> q1, Queue<Item> q2) {
-        Queue<Item> merged = new Queue<Item>();
+        Queue<Item> merged = new Queue<>();
         int totalSize = q1.size() + q2.size();
         /*while(!(q1.isEmpty() && q2.isEmpty())) {
             merged.enqueue(getMin(q1, q2));
@@ -105,14 +105,18 @@ public class MergeSort {
 
     public static void main(String[] args) {
         Queue<String> students = new Queue<>();
-        students.enqueue("Alice");
-        students.enqueue("Vanessa");
-        students.enqueue("Ethan");
-        students.enqueue("KK");
 
-        Queue<String> sortedName = MergeSort.mergeSort(students);
-        System.out.println(students);
-        System.out.println(sortedName);
+        students.enqueue("C");
+        students.enqueue("C");
+        students.enqueue("A");
+        students.enqueue("E");
+        students.enqueue("V");
+        students.enqueue("Z");
+        students.enqueue("Z");
+        students.enqueue("K");
+
+
+        System.out.println(MergeSort.mergeSort(students));
 
     }
 }
