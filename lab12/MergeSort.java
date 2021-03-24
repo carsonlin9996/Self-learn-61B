@@ -77,7 +77,11 @@ public class MergeSort {
     public static <Item extends Comparable> Queue<Item> mergeSort(
             Queue<Item> items) {
 
-        Queue<Queue<Item>> splitQueue = makeSingleItemQueues(items);
+        //Queue<Queue<Item>> splitQueue = makeSingleItemQueues(items);
+        Queue<Item> newQueue = new Queue<>();
+        for(Item i : items) {
+            newQueue.enqueue(i);
+        }
 
         if(items.size() > 1) {
             Queue<Item> leftQueue = new Queue<>();
@@ -85,12 +89,12 @@ public class MergeSort {
 
             int sizeHalf = items.size() / 2;
             for (int i = 0; i < sizeHalf; i++) {
-                Queue<Item> item = splitQueue.dequeue();
-                leftQueue.enqueue(item.dequeue());
+                //Queue<Item> item = splitQueue.dequeue();
+                leftQueue.enqueue(newQueue.dequeue());
             }
             for (int i = 0; i < sizeHalf; i++) {
-                Queue<Item> item = splitQueue.dequeue();
-                rightQueue.enqueue(item.dequeue());
+                //Queue<Item> item = splitQueue.dequeue();
+                rightQueue.enqueue(newQueue.dequeue());
             }
 
             Queue<Item> sortLeft = mergeSort(leftQueue);
