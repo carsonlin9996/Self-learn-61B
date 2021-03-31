@@ -50,6 +50,9 @@ public class RadixSort {
             if(s.length() - 1 < index) {
                 counts[0] += 1; //treat as 0 if length < index;
             } else {
+                //int position = s.charAt(index);
+                //System.out.println("char to int position" + position);
+                //counts['char'], char automatically cast to int, asciii form//
                 counts[s.charAt(index)] += 1;
             }
         }
