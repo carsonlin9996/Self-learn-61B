@@ -4,6 +4,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -38,7 +39,7 @@ public class GraphBuildingHandler extends DefaultHandler {
                     "secondary_link", "tertiary_link"));
     private String activeState = "";
     private final GraphDB g;
-    private Way newWay;
+    private GraphDB.ways newWay;
     private boolean hwyFlag;
 
     /**
@@ -78,8 +79,12 @@ public class GraphBuildingHandler extends DefaultHandler {
             double lon = Double.parseDouble(attributes.getValue("lon"));
             double lat = Double.parseDouble(attributes.getValue("lat"));
 
-            Node newNode = new Node(id, lat, lon);
+            //g.nodes newNode = new Node(id, lat, lon);
+            //g.addNode(id, newNode);
+
+            GraphDB.nodes newNode= g.new nodes(lon, lat, id);
             g.addNode(id, newNode);
+
             /* TODO Use the above information to save a "node" to somewhere. */
             /* Hint: A graph-like structure would be nice. */
 
@@ -88,8 +93,7 @@ public class GraphBuildingHandler extends DefaultHandler {
             /* We encountered a new <way...> tag. */
             activeState = "way";
             long id = Long.parseLong(attributes.getValue("id"));
-            newWay = new Way(id);
-
+            newWay = g.new ways(id);
 
 //            System.out.println("Beginning a way...");
         } else if (activeState.equals("way") && qName.equals("nd")) {
@@ -110,7 +114,7 @@ public class GraphBuildingHandler extends DefaultHandler {
             String k = attributes.getValue("k");
             String v = attributes.getValue("v");
             if (k.equals("maxspeed")) {
-                newWay.setMaxSpeed(v);
+                newWay.setMax(v);
                 //System.out.println("Max Speed: " + v);
                 /* TODO set the max speed of the "current way" here. */
             } else if (k.equals("highway")) {
@@ -152,7 +156,27 @@ public class GraphBuildingHandler extends DefaultHandler {
         if (qName.equals("way")) {
 
             if(hwyFlag) {
-                g.addConnection(newWay);
+                //adds the connection to the node list.
+               List<Long> list = newWay.returnWayList();
+
+               if(list.size() == 2) {
+                   GraphDB.nodes firstNode = g.bearMap.get(list.get(0));
+                   GraphDB.nodes secondNode = g.bearMap.get(list.get(1));
+
+                   firstNode.addConnectionID.add(secondNode.getID());
+                   secondNode.addConnectionID.add(firstNode.getID());
+               } else {
+                   for(int i = 1; i < list.size() - 1; i++) {
+                       GraphDB.nodes curr = g.bearMap.get(list.get(i));
+                       GraphDB.nodes pre = g.bearMap.get(list.get(i - 1));
+                       GraphDB.nodes next = g.bearMap.get(list.get(i + 1));
+
+                       curr.addConnectionID.add(next.getID());
+                       curr.addConnectionID.add(pre.getID());
+                       next.addConnectionID.add(curr.getID());
+                       pre.addConnectionID.add(curr.getID());
+                   }
+               }
             }
 
             newWay = null;

@@ -21,6 +21,58 @@ import java.util.Map;
  * @author Alan Yao, Josh Hug
  */
 public class GraphDB {
+
+    public class nodes{
+        double lat;
+        double lon;
+        long id;
+        List<Long> addConnectionID;
+        public nodes(double lon, double lat, long id){
+            this.lat = lat;
+            this.lon = lon;
+            this.id = id;
+            addConnectionID = new ArrayList<Long>();
+        }
+
+        public List getAllAdjacents(){
+            return addConnectionID;
+        }
+
+        public Long getID(){
+            return id;
+        }
+        /*public void addConnectionID(long id){
+            if(!addConnectionID.contains(id) && id != this.id) {
+                addConnectionID.add(id);
+            }
+        }*/
+
+    }
+
+    public class ways{
+        Long wayID;
+        List<Long> nodesInWay;
+        private String maxSpeed;
+        public ways(long id) {
+            wayID = id;
+            nodesInWay = new ArrayList<Long>();
+        }
+
+        public void addRef(long ref) {
+            nodesInWay.add(ref);
+        }
+
+        public void setMax(String s) {
+            maxSpeed = s;
+        }
+
+        public List returnWayList() {
+            return nodesInWay;
+        }
+    }
+
+
+
     /** Your instance variables for storing the graph. You should consider
      * creating helper classes, e.g. Node, Edge, etc. */
 
@@ -29,7 +81,8 @@ public class GraphDB {
      * You do not need to modify this constructor, but you're welcome to do so.
      * @param dbPath Path to the XML file to be parsed.
      */
-    Map<Long, Node> bearMap;
+
+    Map<Long, nodes> bearMap;
 
     public GraphDB(String dbPath) {
         try {
@@ -65,7 +118,7 @@ public class GraphDB {
     private void clean() {
 
         //computes the length of all the nodes;
-        Object[] allNodes = bearMap.keySet().toArray();
+        /*Object[] allNodes = bearMap.keySet().toArray();
 
         for(int i = 0; i < allNodes.length; i++) {
 
@@ -73,6 +126,13 @@ public class GraphDB {
             //returns a list, if the returned list is empty, remove that node;
             if(current.getConnection().size() == 0) {
                 bearMap.remove(current.getID());
+            }
+        }*/
+        Object[] nodes = bearMap.keySet().toArray();
+        for(int i = 0; i < nodes.length; i++) {
+            nodes curr = bearMap.get(nodes[i]);
+            if(curr.getAllAdjacents().isEmpty()) {
+                bearMap.remove(curr.getID());
             }
         }
         // TODO: Your code here.
@@ -93,7 +153,7 @@ public class GraphDB {
      * @return An iterable of the ids of the neighbors of v.
      */
     Iterable<Long> adjacent(long v) {
-        return bearMap.get(v).getConnection();
+        return bearMap.get(v).getAllAdjacents();
     }
 
     /**
@@ -157,12 +217,12 @@ public class GraphDB {
 
         //determines the length of the entire bearMap nodes
         //stores all the keys in the array
-        Long[] allNodes = bearMap.keySet().toArray(new Long[0]);
+        //Long[] allNodes = bearMap.keySet().toArray(new Long[0]);
         long closestID = 0;
         double shortestDis = Double.MAX_VALUE;
         //iterates through the entire node list;
-        for(int i = 0; i < allNodes.length; i++) {
-            Node current = bearMap.get(allNodes[i]);
+        for(long i : bearMap.keySet()) {
+            nodes current = bearMap.get(i);
             double dis = distance(current.lon, current.lat, lon, lat);
             if(dis < shortestDis) {
                 shortestDis = dis;
@@ -190,17 +250,17 @@ public class GraphDB {
         return bearMap.get(v).lat;
     }
 
-    public void addNode(Long id, Node n){
+    public void addNode(Long id, nodes n){
         bearMap.put(id, n);
     }
 
-    public Node getNode(Long v) {
+    public nodes getNode(Long v) {
         return bearMap.get(v);
     }
 
 
     //Connect the IDs to each Node list
-    public void addConnection(Way way) {
+    /*public void addConnection(Way way) {
         List<Long> list = way.getWayList();
         if(list.size() == 2) {
             Node first = bearMap.get(list.get(0));
@@ -221,5 +281,5 @@ public class GraphDB {
 
             }
         }
-    }
+    }*/
 }
