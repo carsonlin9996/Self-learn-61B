@@ -7,6 +7,9 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Graph for storing all of the intersection (vertex) and road (edge) information.
@@ -26,8 +29,11 @@ public class GraphDB {
      * You do not need to modify this constructor, but you're welcome to do so.
      * @param dbPath Path to the XML file to be parsed.
      */
+    Map<Long, Node> bearMap;
+
     public GraphDB(String dbPath) {
         try {
+            bearMap = new HashMap<>();
             File inputFile = new File(dbPath);
             FileInputStream inputStream = new FileInputStream(inputFile);
             // GZIPInputStream stream = new GZIPInputStream(inputStream);
@@ -57,6 +63,18 @@ public class GraphDB {
      *  we can reasonably assume this since typically roads are connected.
      */
     private void clean() {
+
+        //computes the length of all the nodes;
+        Object[] allNodes = bearMap.keySet().toArray();
+
+        for(int i = 0; i < allNodes.length; i++) {
+
+            Node current = bearMap.get(allNodes[i]);
+            //returns a list, if the returned list is empty, remove that node;
+            if(current.getConnection().size() == 0) {
+                bearMap.remove(current.getID());
+            }
+        }
         // TODO: Your code here.
     }
 
@@ -66,7 +84,7 @@ public class GraphDB {
      */
     Iterable<Long> vertices() {
         //YOUR CODE HERE, this currently returns only an empty list.
-        return new ArrayList<Long>();
+        return bearMap.keySet();
     }
 
     /**
@@ -75,7 +93,7 @@ public class GraphDB {
      * @return An iterable of the ids of the neighbors of v.
      */
     Iterable<Long> adjacent(long v) {
-        return null;
+        return bearMap.get(v).getConnection();
     }
 
     /**
@@ -136,7 +154,22 @@ public class GraphDB {
      * @return The id of the node in the graph closest to the target.
      */
     long closest(double lon, double lat) {
-        return 0;
+
+        //determines the length of the entire bearMap nodes
+        //stores all the keys in the array
+        Long[] allNodes = bearMap.keySet().toArray(new Long[0]);
+        long closestID = 0;
+        double shortestDis = Double.MAX_VALUE;
+        //iterates through the entire node list;
+        for(int i = 0; i < allNodes.length; i++) {
+            Node current = bearMap.get(allNodes[i]);
+            double dis = distance(current.lon, current.lat, lon, lat);
+            if(dis < shortestDis) {
+                shortestDis = dis;
+                closestID = current.getID();
+            }
+        }
+        return closestID;
     }
 
     /**
@@ -145,7 +178,7 @@ public class GraphDB {
      * @return The longitude of the vertex.
      */
     double lon(long v) {
-        return 0;
+        return bearMap.get(v).lon;
     }
 
     /**
@@ -154,6 +187,39 @@ public class GraphDB {
      * @return The latitude of the vertex.
      */
     double lat(long v) {
-        return 0;
+        return bearMap.get(v).lat;
+    }
+
+    public void addNode(Long id, Node n){
+        bearMap.put(id, n);
+    }
+
+    public Node getNode(Long v) {
+        return bearMap.get(v);
+    }
+
+
+    //Connect the IDs to each Node list
+    public void addConnection(Way way) {
+        List<Long> list = way.getWayList();
+        if(list.size() == 2) {
+            Node first = bearMap.get(list.get(0));
+            Node second = bearMap.get(list.get(1));
+
+            first.addConnectionID(second.getID());
+            second.addConnectionID(first.getID());
+        } else {
+            for(int i = 1; i < list.size() - 1; i++) {
+                Node curr = bearMap.get(list.get(i));
+                Node pre = bearMap.get(list.get(i - 1));
+                Node next = bearMap.get(list.get(i + 1));
+
+                curr.addConnectionID(next.getID());
+                curr.addConnectionID(pre.getID());
+                next.addConnectionID(curr.getID());
+                pre.addConnectionID(curr.getID());
+
+            }
+        }
     }
 }
