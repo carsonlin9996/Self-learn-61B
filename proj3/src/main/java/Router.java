@@ -26,7 +26,11 @@ public class Router {
      */
     public static List<Long> shortestPath(GraphDB g, double stlon, double stlat,
                                           double destlon, double destlat) {
+
+        //K = ID, V = dist from any vertices to source.
         Map<Long, Double> distTo = new HashMap<>();
+
+        //K = current node ID, V = current node's predecessor
         Map<Long, Long> edgeTo = new HashMap<>();
 
         GraphDB.nodes start = g.getNode(g.closest(stlon, stlat));
@@ -34,7 +38,7 @@ public class Router {
         Long sourceID = start.getID();
         Long goalID = goal.getID();
 
-
+        //defines how PQ compares nodes.
         class NodeComparator implements Comparator<GraphDB.nodes> {
             @Override
             public int compare(GraphDB.nodes n1, GraphDB.nodes n2) {
@@ -45,10 +49,11 @@ public class Router {
             }
         }
 
-        //new NodeComparator()
-        PriorityQueue<GraphDB.nodes> minQueue = new PriorityQueue<>(new NodeComparator());
-        minQueue.add(start);
 
+
+        //set all edgeTo map to a maximum value.
+        //set all distTo map to a maximum value.
+        //g.vertices returns IDs of all vertices.
         for(Long id : g.vertices()) {
             if(id.equals(sourceID)) {
                 distTo.put(id, 0.0);
@@ -58,6 +63,9 @@ public class Router {
             }
             edgeTo.put(id, Long.MAX_VALUE);
         }
+
+        PriorityQueue<GraphDB.nodes> minQueue = new PriorityQueue<>(new NodeComparator());
+        minQueue.add(start);
 
         while(!minQueue.isEmpty()) {
             GraphDB.nodes currNode = minQueue.remove();
@@ -69,19 +77,26 @@ public class Router {
 
             for(Long w : g.adjacent(currID)) {
                if(distTo.get(w) > distTo.get(currID) + g.distance(w, currID)) {
+                   //replace the adjacent w with a valid distance.
                    distTo.replace(w, distTo.get(currID) + g.distance(w, currID));
+                   //replace edgeTo w with a valid predecessor.
                    edgeTo.replace(w, currID);
+
                    minQueue.remove(g.getNode(w));
                    minQueue.add(g.getNode(w));
                }
             }
         }
+
         List<Long> directions = new ArrayList<>();
         Long curr = goalID;
+        //route backwards, as long as the curr node != sourceID,
         while(!curr.equals(sourceID) && !curr.equals(Long.MAX_VALUE)) {
+            //ArrayList add: at at index and append the rest
             directions.add(0, curr);
             curr = edgeTo.get(curr);
         }
+        //adds the starting node ID.
         directions.add(0, sourceID);
         return directions;
     }
