@@ -82,7 +82,6 @@ public class Router {
                    //replace edgeTo w with a valid predecessor.
                    edgeTo.replace(w, currID);
 
-                   minQueue.remove(g.getNode(w));
                    minQueue.add(g.getNode(w));
                }
             }
