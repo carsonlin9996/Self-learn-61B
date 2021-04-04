@@ -1,5 +1,6 @@
-import java.util.List;
-import java.util.Objects;
+//import org.graalvm.compiler.graph.Graph;
+
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -25,7 +26,64 @@ public class Router {
      */
     public static List<Long> shortestPath(GraphDB g, double stlon, double stlat,
                                           double destlon, double destlat) {
-        return null; // FIXME
+        Map<Long, Double> distTo = new HashMap<>();
+        Map<Long, Long> edgeTo = new HashMap<>();
+
+        GraphDB.nodes start = g.getNode(g.closest(stlon, stlat));
+        GraphDB.nodes goal = g.getNode(g.closest(destlon, destlat));
+        Long sourceID = start.getID();
+        Long goalID = goal.getID();
+
+
+        class NodeComparator implements Comparator<GraphDB.nodes> {
+            @Override
+            public int compare(GraphDB.nodes n1, GraphDB.nodes n2) {
+                double d1 = distTo.get(n1.getID()) + g.distance(n1.getID(), goalID);
+                double d2 = distTo.get(n2.getID()) + g.distance(n2.getID(), goalID);
+
+                return Double.compare(d1, d2);
+            }
+        }
+
+        //new NodeComparator()
+        PriorityQueue<GraphDB.nodes> minQueue = new PriorityQueue<>(new NodeComparator());
+        minQueue.add(start);
+
+        for(Long id : g.vertices()) {
+            if(id.equals(sourceID)) {
+                distTo.put(id, 0.0);
+            }
+            else {
+                distTo.put(id, Double.MAX_VALUE);
+            }
+            edgeTo.put(id, Long.MAX_VALUE);
+        }
+
+        while(!minQueue.isEmpty()) {
+            GraphDB.nodes currNode = minQueue.remove();
+            Long currID = currNode.getID();
+
+            if(currID.equals(goalID)) {
+                break;
+            }
+
+            for(Long w : g.adjacent(currID)) {
+               if(distTo.get(w) > distTo.get(currID) + g.distance(w, currID)) {
+                   distTo.replace(w, distTo.get(currID) + g.distance(w, currID));
+                   edgeTo.replace(w, currID);
+                   minQueue.remove(g.getNode(w));
+                   minQueue.add(g.getNode(w));
+               }
+            }
+        }
+        List<Long> directions = new ArrayList<>();
+        Long curr = goalID;
+        while(!curr.equals(sourceID) && !curr.equals(Long.MAX_VALUE)) {
+            directions.add(0, curr);
+            curr = edgeTo.get(curr);
+        }
+        directions.add(0, sourceID);
+        return directions;
     }
 
     /**
